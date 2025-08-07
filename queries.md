@@ -1,20 +1,20 @@
 
-db.zips.find({ city: "NEW YORK" });
+1. db.zips.find({ city: "NEW YORK" });
 
-db.zips.find({ state: "CA" }).limit(100);
+2. db.zips.find({ state: "CA" }).limit(100);
 
-db.zips.find({ pop: { $gt: 50000 } });
+3. db.zips.find({ pop: { $gt: 50000 } });
 
-db.zips.find({ loc: { $near: [‑86.5, 33.6] } });
+4. db.zips.find({ loc: { $near: [‑86.5, 33.6] } });
 
-db.zips.aggregate([ { $group: { _id: "$state", totalPop: { $sum: "$pop" } } } ]);
+5. db.zips.aggregate([ { $group: { _id: "$state", totalPop: { $sum: "$pop" } } } ]);
 
-db.zips.aggregate([ { $project: { city: 1, pop: 1 } }, { $sort: { pop: -1 } } ]);
+6. db.zips.aggregate([ { $project: { city: 1, pop: 1 } }, { $sort: { pop: -1 } } ]);
 
-db.zips.find({ city: /^A/ });
+7. db.zips.find({ city: /^A/ });
 
-db.zips.aggregate([ { $match: { state: "NY" } }, { $group: { _id: "$city", postal_codes: { $addToSet: "$_id" } } } ]);
+8. db.zips.aggregate([ { $match: { state: "NY" } }, { $group: { _id: "$city", postal_codes: { $addToSet: "$_id" } } } ]);
 
-db.zips.find({ state: "TX", pop: { $lt: 1000 } });
+9. db.zips.find({ state: "TX", pop: { $lt: 1000 } });
 
-db.zips.aggregate([ { $match: { city: "LAKEWOOD" } }, { $group: { _id: "$state", avgPop: { $avg: "$pop" } } } ]);
+10. db.zips.aggregate([ { $match: { city: "LAKEWOOD" } }, { $group: { _id: "$state", avgPop: { $avg: "$pop" } } } ]);
