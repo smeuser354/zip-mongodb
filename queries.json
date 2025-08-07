@@ -1,0 +1,29 @@
+//1
+db.zips.find({ city: "NEW YORK" })
+
+//2
+db.zips.find({ state: "CA" }).limit(100)
+
+//3
+db.zips.find({ pop: { $gt: 50000 } })
+
+//4
+db.zips.find({ loc: { $near: [‑86.5, 33.6] } })
+
+//5
+db.zips.aggregate([ { $group: { _id: "$state", totalPop: { $sum: "$pop" } } } ])
+
+//6
+db.zips.aggregate([ { $project: { city: 1, pop: 1 } }, { $sort: { pop: -1 } } ])
+
+//7
+db.zips.find({ city: /^A/ })
+
+//8
+db.zips.aggregate([ { $match: { state: "NY" } }, { $group: { _id: "$city", postal_codes: { $addToSet: "$_id" } } } ])
+
+//9
+db.zips.find({ state: "TX", pop: { $lt: 1000 } })
+
+//10
+db.zips.aggregate([ { $match: { city: "LAKEWOOD" } }, { $group: { _id: "$state", avgPop: { $avg: "$pop" } } } ])
